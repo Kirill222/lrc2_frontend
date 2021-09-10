@@ -1,4 +1,5 @@
 const GET_BOOKS = 'GET_BOOKS'
+const ADD_BOOK = 'ADD_BOOK'
 
 const initialState = {
     books: [
@@ -37,6 +38,8 @@ const booksReducer = (state = initialState, action) => {
     switch(action.type) {
         case GET_BOOKS:
             return {...state, books: action.books}
+        case ADD_BOOK:
+            return {...state, books: [...state.books, action.book]}
         default:
             return state
     }
@@ -44,5 +47,6 @@ const booksReducer = (state = initialState, action) => {
 
 //Action Creators
 export const getBooks = (books) => ({type: GET_BOOKS, books})
+export const addBook = (book) => ({type: ADD_BOOK, book})
 
 export default booksReducer
