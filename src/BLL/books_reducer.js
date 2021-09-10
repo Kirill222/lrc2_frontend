@@ -1,11 +1,7 @@
-import { Typography, Grid } from "@material-ui/core"
-import  Book  from './Book'
+const GET_BOOKS = 'GET_BOOKS'
 
-
-
-const Books = () => {
-
-    let books = [
+const initialState = {
+    books: [
         {
             id: 1,
             title: 'Game of Thrones',
@@ -34,25 +30,19 @@ const Books = () => {
             rating: 1.3,
             yearOfPublication: 2000,
         },
-
     ]
-
-    return (
-        <div>
-            <Typography component='h1' variant='h3' align='center'>Books</Typography>
-            <Grid container>
-                {
-                    books.map(book => {
-                        return (
-                            <Book book={book} />
-                        )
-                    })
-                }
-            </Grid>
-
-        </div>
-        
-    )
 }
 
-export default Books
+const booksReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case GET_BOOKS:
+            return {...state, books: action.books}
+        default:
+            return state
+    }
+}
+
+//Action Creators
+export const getBooks = (books) => ({type: GET_BOOKS, books})
+
+export default booksReducer
