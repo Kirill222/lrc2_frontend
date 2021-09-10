@@ -46,6 +46,9 @@ export default function Book({book}) {
                 <Button size="small" color="primary" onClick={() => history.push(`/book/${book.id}`)}>
                     Learn More...
                 </Button>
+                <Button size="small" color="primary">
+                    Delete
+                </Button>
             </CardActions>
         </Card>
     </Grid>

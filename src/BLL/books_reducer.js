@@ -1,5 +1,6 @@
 const GET_BOOKS = 'GET_BOOKS'
 const ADD_BOOK = 'ADD_BOOK'
+const DELETE_BOOK = 'DELETE_BOOK'
 
 const initialState = {
     books: [
@@ -40,6 +41,12 @@ const booksReducer = (state = initialState, action) => {
             return {...state, books: action.books}
         case ADD_BOOK:
             return {...state, books: [...state.books, action.book]}
+        case DELETE_BOOK: {
+            const withoutRemovedBook = state.books.filter(book => {
+                return book.id !== action.bookId
+            })
+            return {...state, books: withoutRemovedBook}
+        }
         default:
             return state
     }

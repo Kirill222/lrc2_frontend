@@ -5,8 +5,7 @@ import { addBook } from '../../BLL/books_reducer'
 import { useHistory } from 'react-router'
 
 
-
-const UploadBookForm = () => {    
+const UploadBookForm = () => {      
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -33,10 +32,23 @@ const UploadBookForm = () => {
             <Typography variant="h2">Upload a new book</Typography>
 
             <form onSubmit={formik.handleSubmit}>
-                <input type="text" name='title' onChange={formik.handleChange} value={formik.values.title}/>
-                <input type="text" name='author' onChange={formik.handleChange} value={formik.values.author}/>
-                <input type="text" name='rating' onChange={formik.handleChange} value={formik.values.rating}/>
-                <input type="text" name='yearOfPublication' onChange={formik.handleChange} value={formik.values.yearOfPublication}/>
+                <div>
+                    <input type="text" id="title" name='title' onChange={formik.handleChange} value={formik.values.title}/>
+                    <label htmlFor="title">Title</label>
+                </div>
+                <div>
+                    <input type="text" id="author" name='author' onChange={formik.handleChange} value={formik.values.author}/>
+                    <label htmlFor="author">Author</label>
+                </div>
+                <div>
+                    <input type="text" id="rating" name='rating' onChange={formik.handleChange} value={formik.values.rating}/>
+                    <label htmlFor="rating">Rating</label>
+                </div>
+                <div>
+                    <input type="text" id="yearOfPublication" name='yearOfPublication' onChange={formik.handleChange} value={formik.values.yearOfPublication}/>
+                    <label htmlFor="yearOfPublication">Year</label>
+                </div>
+
                 <button type="submit">Submit</button>
             </form>
 
