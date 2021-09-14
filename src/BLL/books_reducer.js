@@ -45,6 +45,8 @@ const booksReducer = (state = initialState, action) => {
             const withoutRemovedBook = state.books.filter(book => {
                 return book.id !== action.bookId
             })
+            console.log(withoutRemovedBook)
+
             return {...state, books: withoutRemovedBook}
         }
         default:
@@ -55,5 +57,6 @@ const booksReducer = (state = initialState, action) => {
 //Action Creators
 export const getBooks = (books) => ({type: GET_BOOKS, books})
 export const addBook = (book) => ({type: ADD_BOOK, book})
+export const deleteBook = (bookId) => ({type: DELETE_BOOK, bookId})
 
 export default booksReducer
