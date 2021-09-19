@@ -1,12 +1,29 @@
 import { Typography, Grid } from "@material-ui/core"
 import  Book  from './Book'
 import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getBooks } from "../../BLL/books_reducer"
+import { useDispatch } from "react-redux"
+import * as axios from 'axios'
 
 
 
 const Books = () => {
 
-    const books = useSelector(state => state.books.books)   
+    const books = useSelector(state => state.books.books)
+
+    const dispatch = useDispatch()
+    
+    useEffect(async () => {
+        let data = await axios.get('http://localhost:5000/api/books')
+
+        let {books} = data.data
+
+        console.log(books)
+
+        dispatch(getBooks(books))
+
+    }, [])
 
     return (
         <div>
