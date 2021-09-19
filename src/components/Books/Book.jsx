@@ -11,6 +11,7 @@ import { Grid } from '@material-ui/core'
 import { useHistory } from 'react-router'
 import {deleteBook} from '../../BLL/books_reducer'
 import { useDispatch } from 'react-redux'
+import axios from 'axios'
 
 
 
@@ -18,7 +19,12 @@ export default function Book({book}) {
 
     const history = useHistory()
     const dispatch = useDispatch()
-    console.log(deleteBook)
+
+    const onDeleteHandler =  (bookId) => {
+        console.log(bookId)
+        axios.delete(`http://localhost:5000/api/books/${bookId}`)
+        dispatch(deleteBook(bookId))
+    }
  
     return (
         <Grid item xs={12} sm={6} md={4} lg={3} key={book.id} >
@@ -50,7 +56,7 @@ export default function Book({book}) {
                     <Button size="small" color="primary" onClick={() => history.push(`/book/${book.id}`)}>
                         Learn More...
                     </Button>
-                    <Button size="small" color="primary" onClick={() => dispatch(deleteBook(book.id))}>
+                    <Button size="small" color="primary" onClick={() => onDeleteHandler(book.id)}>
                         Delete
                     </Button>
                 </CardActions>

@@ -16,13 +16,8 @@ const Books = () => {
     
     useEffect(async () => {
         let data = await axios.get('http://localhost:5000/api/books')
-
         let {books} = data.data
-
-        console.log(books)
-
         dispatch(getBooks(books))
-
     }, [])
 
     return (
