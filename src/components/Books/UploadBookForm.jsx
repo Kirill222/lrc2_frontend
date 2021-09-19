@@ -3,6 +3,7 @@ import {useFormik} from 'formik'
 import { useSelector, useDispatch } from 'react-redux'
 import { addBook } from '../../BLL/books_reducer'
 import { useHistory } from 'react-router'
+import * as axios from 'axios'
 
 
 const UploadBookForm = () => {      
@@ -17,13 +18,20 @@ const UploadBookForm = () => {
             rating: '',
             yearOfPublication: '',
         },
-        onSubmit: values => {
-            const bookWithAddedId = {...values, id: Math.random()}
+        onSubmit: async (values) => {
 
-            dispatch(addBook(bookWithAddedId))
-            console.log(bookWithAddedId)
+            await axios.post("http://localhost:5000/api/books", values)
+
             formik.resetForm()
             history.push('/books')
+
+
+            //OLD WAY WITHOUT SERVER (Static application)
+            // const bookWithAddedId = {...values, id: Math.random()}
+            // dispatch(addBook(bookWithAddedId))
+            // console.log(bookWithAddedId)
+            // formik.resetForm()
+            // history.push('/books')
         }
     })
    
