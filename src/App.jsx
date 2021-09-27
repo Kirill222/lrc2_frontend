@@ -1,6 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline'
 import ResponsiveDrawer from './components/ResponsiveDrawer/ResponsiveDrawer'
-import {Switch, Route, Link} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import Books from './components/Books/Books'
 import UploadBookForm from './components/Books/UploadBookForm'
 import BookDetailsPage from './components/Books/BookDetailsPage'

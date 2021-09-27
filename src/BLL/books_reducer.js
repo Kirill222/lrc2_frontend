@@ -1,6 +1,9 @@
 const GET_BOOKS = 'GET_BOOKS'
 const ADD_BOOK = 'ADD_BOOK'
 const DELETE_BOOK = 'DELETE_BOOK'
+const SET_TOTAL_BOOK_COUNT = 'SET_TOTAL_BOOK_COUNT'
+const SET_PAGE_NUMBER = 'SET_PAGE_NUMBER'
+
 
 const initialState = {
     books: [
@@ -32,7 +35,10 @@ const initialState = {
             rating: 1.3,
             yearOfPublication: 2000,
         },
-    ]
+    ],
+    page: 1,
+    limit:2,
+    totalBookCount: null,
 }
 
 const booksReducer = (state = initialState, action) => {
@@ -49,6 +55,10 @@ const booksReducer = (state = initialState, action) => {
 
             return {...state, books: withoutRemovedBook}
         }
+        case SET_TOTAL_BOOK_COUNT:
+            return {...state, totalBookCount: action.totalBookCount}
+        case SET_PAGE_NUMBER:
+            return {...state, page: action.pageNumber}
         default:
             return state
     }
@@ -58,5 +68,7 @@ const booksReducer = (state = initialState, action) => {
 export const getBooks = (books) => ({type: GET_BOOKS, books})
 export const addBook = (book) => ({type: ADD_BOOK, book})
 export const deleteBook = (bookId) => ({type: DELETE_BOOK, bookId})
+export const setTotalBookCount = (totalBookCount) => ({type: SET_TOTAL_BOOK_COUNT, totalBookCount})
+export const setPageNumber = (pageNumber) => ({type: SET_PAGE_NUMBER, pageNumber})
 
 export default booksReducer
