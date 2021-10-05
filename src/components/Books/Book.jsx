@@ -26,10 +26,11 @@ export default function Book({book}) {
     }
  
     return (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={book.id} >
+        <Grid item xs={12} sm={6} md={4} lg={2} key={book.id} >
             <Card>
                 <CardActionArea>
                     <CardMedia
+                    style={{height: "300px"}}
                     component="img"
                     alt={book.title}
                     height="140"

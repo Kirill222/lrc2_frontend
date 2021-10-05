@@ -51,7 +51,7 @@ const Books = () => {
     return (
         <div>
             <Typography component='h1' variant='h3' align='center'>Books</Typography>
-            <Grid container>
+            <Grid container spacing={3}>
                 {
                     books.map(book => {
                         return (
