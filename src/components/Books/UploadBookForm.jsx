@@ -17,23 +17,29 @@ const UploadBookForm = () => {
             author: '',
             rating: '',
             yearOfPublication: '',
+            bookCover: '',
         },
-        onSubmit: async (values) => {
+        onSubmit: async (values) => {     
+            
+            let formData = new FormData()
 
-            await axios.post("http://localhost:5000/api/books", values)
+            formData.append('bookCover', values.bookCover)
+            formData.append('title', values.title)
+            formData.append('author', values.author)
+            formData.append('rating', values.rating)
+            formData.append('yearOfPublication', values.yearOfPublication)
 
-            formik.resetForm()
-            history.push('/books')
-
-
-            //OLD WAY WITHOUT SERVER (Static application)
-            // const bookWithAddedId = {...values, id: Math.random()}
-            // dispatch(addBook(bookWithAddedId))
-            // console.log(bookWithAddedId)
-            // formik.resetForm()
-            // history.push('/books')
+            await axios.post("http://localhost:5000/api/books", formData, {
+                headers: {
+                  "Content-Type" : "multipart/form-data"
+                }
+              })           
         }
     })
+
+    const bookCoverUpload = (e) => {
+        formik.setFieldValue('bookCover', e.target.files[0])
+    }   
    
     return (
         <>  
@@ -55,6 +61,10 @@ const UploadBookForm = () => {
                 <div>
                     <input type="text" id="yearOfPublication" name='yearOfPublication' onChange={formik.handleChange} value={formik.values.yearOfPublication}/>
                     <label htmlFor="yearOfPublication">Year</label>
+                </div>
+                <div>
+                    <input type="file" id="bookCover" name="bookCover" onChange={bookCoverUpload} />
+                    <label htmlFor="file">Choose file to upload</label>                    
                 </div>
 
                 <button type="submit">Submit</button>

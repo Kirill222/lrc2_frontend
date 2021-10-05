@@ -37,7 +37,7 @@ const initialState = {
         },
     ],
     page: 1,
-    limit:2,
+    limit:8,
     totalBookCount: null,
 }
 

@@ -29,6 +29,9 @@ const FormikForm = () => {
                 <label htmlFor="channel">Channel</label>
                 <input type="text" id="channel" name="channel" onChange={formik.handleChange} value={formik.values.channel}  />
             </div>
+            <div>
+                <input id="book_cover" name="book_cover" type="file" />
+            </div>
             <button type="submit">Submit</button>
         </form>
     )
