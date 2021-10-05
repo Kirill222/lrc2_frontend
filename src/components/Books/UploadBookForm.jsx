@@ -33,7 +33,10 @@ const UploadBookForm = () => {
                 headers: {
                   "Content-Type" : "multipart/form-data"
                 }
-              })           
+              }) 
+              
+            formik.resetForm()
+            history.push("/books")
         }
     })
 

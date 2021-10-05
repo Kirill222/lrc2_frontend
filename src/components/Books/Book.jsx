@@ -33,7 +33,7 @@ export default function Book({book}) {
                     component="img"
                     alt={book.title}
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
+                    image={`http://localhost:5000/${book.bookCover}`}
                     title="Contemplative Reptile"
                     />
                     <CardContent>
