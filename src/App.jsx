@@ -5,7 +5,8 @@ import Books from './components/Books/Books'
 import HomePage from './components/HomePage/HomePage'
 import UploadBookForm from './components/Books/UploadBookForm'
 import BookDetailsPage from './components/Books/BookDetailsPage'
-import FormikForm from './components/Books/FormikForm'
+import SignupPage from './components/AuthPages/SignupPage'
+import LoginPage from './components/AuthPages/LoginPage'
 
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
           <Route path='/book/:bookId' component={BookDetailsPage}/>
           <Route path='/books' component={Books}/>
           <Route path='/upload' component={UploadBookForm}/>
-          <Route path='/test' component={FormikForm}/>
+          <Route path='/signup' component={SignupPage}/>
+          <Route path='/login' component={LoginPage}/>
         </Switch>
       </ResponsiveDrawer>
     </div>
