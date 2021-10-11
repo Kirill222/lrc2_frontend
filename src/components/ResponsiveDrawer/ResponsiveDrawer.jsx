@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import HomeIcon from '@mui/icons-material/Home';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -72,7 +73,15 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <List>       
+      <List>
+          <ListItem 
+            button 
+            onClick={() => history.push('/')}
+            className={location.pathname === '/' ? classes.active : null}            
+            >
+            <ListItemIcon><HomeIcon /></ListItemIcon>
+            <ListItemText primary='Home' />
+          </ListItem>      
           <ListItem 
             button 
             onClick={() => history.push('/books')}

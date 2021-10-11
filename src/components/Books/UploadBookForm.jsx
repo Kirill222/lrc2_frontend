@@ -3,6 +3,7 @@ import {useFormik} from 'formik'
 import { useSelector, useDispatch } from 'react-redux'
 import { addBook } from '../../BLL/books_reducer'
 import { useHistory } from 'react-router'
+import * as axios from 'axios'
 
 
 const UploadBookForm = () => {      
@@ -16,16 +17,32 @@ const UploadBookForm = () => {
             author: '',
             rating: '',
             yearOfPublication: '',
+            bookCover: '',
         },
-        onSubmit: values => {
-            const bookWithAddedId = {...values, id: Math.random()}
+        onSubmit: async (values) => {     
+            
+            let formData = new FormData()
 
-            dispatch(addBook(bookWithAddedId))
-            console.log(bookWithAddedId)
+            formData.append('bookCover', values.bookCover)
+            formData.append('title', values.title)
+            formData.append('author', values.author)
+            formData.append('rating', values.rating)
+            formData.append('yearOfPublication', values.yearOfPublication)
+
+            await axios.post("http://localhost:5000/api/books", formData, {
+                headers: {
+                  "Content-Type" : "multipart/form-data"
+                }
+              }) 
+              
             formik.resetForm()
-            history.push('/books')
+            history.push("/books")
         }
     })
+
+    const bookCoverUpload = (e) => {
+        formik.setFieldValue('bookCover', e.target.files[0])
+    }   
    
     return (
         <>  
@@ -47,6 +64,10 @@ const UploadBookForm = () => {
                 <div>
                     <input type="text" id="yearOfPublication" name='yearOfPublication' onChange={formik.handleChange} value={formik.values.yearOfPublication}/>
                     <label htmlFor="yearOfPublication">Year</label>
+                </div>
+                <div>
+                    <input type="file" id="bookCover" name="bookCover" onChange={bookCoverUpload} />
+                    <label htmlFor="file">Choose file to upload</label>                    
                 </div>
 
                 <button type="submit">Submit</button>
