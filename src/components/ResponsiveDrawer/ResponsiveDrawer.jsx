@@ -17,6 +17,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { useHistory, useLocation } from 'react-router';
+import Link from '@mui/material/Link'
+import { padding } from '@mui/system';
 
 const drawerWidth = 240;
 
@@ -112,7 +114,9 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar 
+          style={{justifyContent: "space-between"}}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -125,6 +129,41 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap>
             Book collection
           </Typography>
+
+
+          <div>
+            <Link               
+              underline="none"
+              style={{padding: "10px 15px", color: "#fff", cursor: "pointer"}}
+              onClick={() => {
+                history.push('/login')
+              }}
+            >
+              Log in
+            </Link>
+            <Link
+                style={{padding: "10px 15px", color: "#000", backgroundColor: "#00FFFF", borderRadius: "5px"}}
+                component="button"
+                variant="body2"
+                underline="none"
+                onClick={() => {
+                  history.push('/signup')
+                }}
+              >
+              Sign up
+            </Link>
+          </div>
+
+
+
+
+
+
+
+
+
+
+          
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
