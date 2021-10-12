@@ -153,16 +153,6 @@ function ResponsiveDrawer(props) {
               Sign up
             </Link>
           </div>
-
-
-
-
-
-
-
-
-
-
           
         </Toolbar>
       </AppBar>

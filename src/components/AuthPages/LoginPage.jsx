@@ -30,7 +30,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles.login_root}>
-            <form className={styles.login_form}>
+            <form className={styles.login_form} onSubmit={formik.handleSubmit}>
                 <h2>Log in</h2>
                 <TextField 
                     fullWidth
